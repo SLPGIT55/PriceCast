@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Predictor de Precios | Inmobiliaria</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .predictor-container { max-width: 600px; margin-top: 100px; padding: 30px; background: white; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .btn-predict { background-color: #007bff; color: white; width: 100%; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container d-flex justify-content-center">
+    <div class="predictor-container">
+        <h2 class="text-center mb-4">Predice el Precio de tu Vivienda</h2>
+        <p class="text-muted text-center">Introduce los datos para conectar con el mercado actual.</p>
+
+        <form action="/predecir" method="post">
+            <div class="mb-3">
+                <label for="localidad" class="form-label">Localidad o Código Postal</label>
+                <input type="text" class="form-control" id="localidad" name="localidad" placeholder="Ej: Madrid, 28001" required>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="metros" class="form-label">Metros Cuadrados</label>
+                    <input type="number" class="form-control" id="metros" name="metros" placeholder="M²" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="habitaciones" class="form-label">Habitaciones</label>
+                    <input type="number" class="form-control" id="habitaciones" name="habitaciones" placeholder="Nº">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-predict">Conectar con API y Predecir</button>
+        </form>
+
+        <div th:if="${resultado}" class="mt-4 alert alert-success text-center">
+            <h4 th:text="${resultado}"></h4>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
